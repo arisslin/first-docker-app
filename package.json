@@ -18,5 +18,8 @@
   "homepage": "https://github.com/arisslin/first-docker-app#readme",
   "devDependencies": {
     "prettier": "2.7.1"
+  },
+  "dependencies": {
+    "typescript": "^4.8.4"
   }
 }
