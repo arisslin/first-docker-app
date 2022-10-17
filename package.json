@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/arisslin/first-docker-app/issues"
   },
-  "homepage": "https://github.com/arisslin/first-docker-app#readme"
+  "homepage": "https://github.com/arisslin/first-docker-app#readme",
+  "devDependencies": {
+    "prettier": "2.7.1"
+  }
 }
