@@ -2,8 +2,12 @@ FROM node:18.11.0
 
 USER node
 
+RUN mkdir /home/node/code
+
 WORKDIR /home/node/code
 
-COPY --chown=node:node src/index.mjs .
+COPY --chown=node:node . .
 
-CMD ["node", "index.mjs"]
+RUN npm ci
+
+CMD ["node", "src/server/index.mjs"]
