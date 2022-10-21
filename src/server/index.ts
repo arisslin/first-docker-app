@@ -1,9 +1,14 @@
-import * as http from 'http';
+import * as express from 'express';
 
-http
-  .createServer((request, response) => {
-    console.log('request received');
-    response.end('omg hi', 'utf-8');
-  })
-  .listen(3000);
-console.log('server started');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+  res.type('text/html');
+  res.status(200);
+  res.send('Hello World!');
+});
+
+app.listen(port, () => {
+  console.log('Server runs on port ' + port);
+});
