@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/index.ts",
+  "type": "module",
   "scripts": {
     "docker:build": "docker build -t first-docker-app:1 .",
     "docker:run": "docker run first-docker-app:1",

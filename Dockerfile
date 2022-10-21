@@ -1,5 +1,5 @@
 FROM node:18.11.0
 
-COPY src/index.js index.js
+COPY src/index.mjs index.mjs
 
-CMD ["node", "index.js"]
+CMD ["node", "index.mjs"]
