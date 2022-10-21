@@ -1,5 +1,5 @@
 {
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "src/server/index.ts"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "target": "es2022",
