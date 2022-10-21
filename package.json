@@ -5,6 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "docker:build": "docker build -t first-docker-app:1 .",
+    "docker:run": "docker run first-docker-app:1",
     "server": "ts-node src/index.ts"
   },
   "repository": {
