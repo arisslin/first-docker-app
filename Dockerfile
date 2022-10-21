@@ -10,4 +10,4 @@ COPY --chown=node:node . .
 
 RUN npm ci
 
-CMD ["node", "src/server/index.mjs"]
+CMD ["npm", "run", "server"]
