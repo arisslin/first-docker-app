@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "docker:build": "docker build -t first-docker-app:1 .",
-    "docker:run": "docker run first-docker-app:1",
+    "docker:run": "docker run --init --publish 3000:3000 first-docker-app:1",
     "server": "ts-node src/index.ts"
   },
   "repository": {
