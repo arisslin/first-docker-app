@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "docker:build": "docker build .",
+    "docker:build": "docker build -t first-docker-app:1 .",
     "server": "ts-node src/index.ts"
   },
   "repository": {
