@@ -1,5 +1,9 @@
 FROM node:18.11.0
 
-COPY src/index.mjs index.mjs
+USER node
+
+WORKDIR /home/node/code
+
+COPY --chown=node:node src/index.mjs .
 
 CMD ["node", "index.mjs"]
