@@ -6,6 +6,9 @@
   "scripts": {
     "docker:build": "docker build -t first-docker-app:1 .",
     "docker:run": "docker run --init -p 8000:8000 first-docker-app:1",
+    "husky:prepare": "husky install",
+    "lint": "eslint -c .eslintrc.json \"src/**/*.{ts,tsx}\"",
+    "lintstaged": "lint-staged --allow-empty",
     "server": "ts-node src/server/index.ts"
   },
   "repository": {
@@ -23,6 +26,8 @@
     "@typescript-eslint/parser": "^5.40.1",
     "eslint": "^8.25.0",
     "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
     "prettier": "2.7.1"
   },
   "dependencies": {
