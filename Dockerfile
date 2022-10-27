@@ -12,4 +12,6 @@ RUN npm ci
 
 COPY --chown=node:node . .
 
+RUN npm run test:ci
+
 CMD ["npm", "run", "server"]

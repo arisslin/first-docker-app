@@ -10,7 +10,8 @@
     "lint": "eslint -c .eslintrc.json \"src/**/*.{ts,tsx}\"",
     "lintstaged": "lint-staged --allow-empty",
     "server": "ts-node src/server/index.ts",
-    "test": "jest"
+    "test": "jest --watchAll",
+    "test:ci" : "jest"
   },
   "repository": {
     "type": "git",
