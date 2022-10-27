@@ -1,5 +1,5 @@
 {
-  "include": ["src/**/*", "src/server/index.ts"],
+  "include": ["src/**/*", "src/server/index.ts", "jest.config.ts"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "target": "es2022",
