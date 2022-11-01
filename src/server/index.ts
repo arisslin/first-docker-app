@@ -1,21 +1,19 @@
 import * as express from 'express';
-import { Student } from '../types/index';
+import { mockedStudentDatabase } from '../mocks/mockedStudentDatabase';
 
 const app = express();
 const port = 8000;
 
-const student: Student = {
-  firstName: 'Max',
-  surname: 'Mustermann',
-  gender: 'male',
-  fieldOfStudy: 'informatics',
-  birthday: new Date(1993, 1, 3),
-};
-
 app.get('/', (req, res) => {
+  res.type('text/html');
+  res.status(200);
+  res.send('Hello World');
+});
+
+app.get('/students', (req, res) => {
   res.type('application/json');
   res.status(200);
-  res.send(student);
+  res.send(mockedStudentDatabase);
 });
 
 app.listen(port, () => {
