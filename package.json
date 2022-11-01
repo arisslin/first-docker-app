@@ -11,7 +11,7 @@
     "lintstaged": "lint-staged --allow-empty",
     "server": "ts-node src/server/index.ts",
     "test": "jest --watchAll",
-    "test:ci" : "jest"
+    "test:ci": "jest"
   },
   "repository": {
     "type": "git",
