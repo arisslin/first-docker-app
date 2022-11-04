@@ -1,9 +1,11 @@
 {
   "name": "first-docker-app",
   "version": "1.0.0",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "description": "",
-  "main": "src/server/index.ts",
   "scripts": {
+    "build:client": "parcel build src/client/index.html",
+    "dev:client": "parcel src/client/index.html",
     "docker:build-client": "docker build -f client.Dockerfile -t first-docker-app-client:1 .",
     "docker:build-server": "docker build -f server.Dockerfile -t first-docker-app-server:1 .",
     "docker:run-client": "docker run --init -p 8080:80 first-docker-app-client:1",
