@@ -4,8 +4,9 @@
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "description": "",
   "scripts": {
-    "build:client": "parcel build src/client/index.html",
-    "dev:client": "parcel src/client/index.html",
+    "client:build": "parcel build src/client/index.html",
+    "client:cleanup": "rm -rf dist && rm -rf .parcel-cache",
+    "client:dev": "parcel src/client/index.html",
     "docker:build-client": "docker build -f client.Dockerfile -t first-docker-app-client:1 .",
     "docker:build-server": "docker build -f server.Dockerfile -t first-docker-app-server:1 .",
     "docker:run-client": "docker run --init -p 8080:80 first-docker-app-client:1",
