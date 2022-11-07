@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import cors from 'cors';
 import { mockedStudentDatabase } from '../mocks/mockedStudentDatabase';
 
@@ -7,16 +7,16 @@ const port = 8000;
 
 app.use(cors());
 
-app.get('/', (req: Request, res: Response) => {
-  res.type('text/html');
-  res.status(200);
-  res.send('Hello World');
+app.get('/', (request, response) => {
+  response.type('text/html');
+  response.status(200);
+  response.send('Hello World');
 });
 
-app.get('/students', (req: Request, res: Response) => {
-  res.type('application/json');
-  res.status(200);
-  res.send(mockedStudentDatabase);
+app.get('/students', (request, response) => {
+  response.type('application/json');
+  response.status(200);
+  response.send(mockedStudentDatabase);
 });
 
 app.listen(port, () => {
