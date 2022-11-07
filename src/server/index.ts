@@ -1,16 +1,19 @@
-import * as express from 'express';
+import express, { Request, Response } from 'express';
+import cors from 'cors';
 import { mockedStudentDatabase } from '../mocks/mockedStudentDatabase';
 
 const app = express();
 const port = 8000;
 
-app.get('/', (req, res) => {
+app.use(cors());
+
+app.get('/', (req: Request, res: Response) => {
   res.type('text/html');
   res.status(200);
   res.send('Hello World');
 });
 
-app.get('/students', (req, res) => {
+app.get('/students', (req: Request, res: Response) => {
   res.type('application/json');
   res.status(200);
   res.send(mockedStudentDatabase);
