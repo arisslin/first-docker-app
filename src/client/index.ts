@@ -2,5 +2,9 @@ import { Student } from '../types/index';
 import { fetchStudents } from '../helpers/fetchHelpers';
 
 fetchStudents()
-  .then((studentsData: Student[]) => console.log(studentsData))
+  .then((students: Student[]) => renderStudentsTable(students))
   .catch((error) => console.error(error));
+
+function renderStudentsTable(students: Student[]): void {
+  console.log(students);
+}
