@@ -1,11 +1,16 @@
 {
   "name": "first-docker-app",
   "version": "1.0.0",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "description": "",
-  "main": "src/server/index.ts",
   "scripts": {
-    "docker:build-server": "docker build -f server.Dockerfile -t first-docker-app:1 .",
-    "docker:run-server": "docker run --init -p 8000:8000 first-docker-app:1",
+    "client:build": "parcel build src/client/index.html",
+    "client:cleanup": "rm -rf dist && rm -rf .parcel-cache",
+    "client:dev": "parcel src/client/index.html",
+    "docker:build-client": "docker build -f client.Dockerfile -t first-docker-app-client:1 .",
+    "docker:build-server": "docker build -f server.Dockerfile -t first-docker-app-server:1 .",
+    "docker:run-client": "docker run --init -p 8080:80 first-docker-app-client:1",
+    "docker:run-server": "docker run --init -p 8000:8000 first-docker-app-server:1",
     "husky:prepare": "husky install",
     "lint": "eslint -c .eslintrc.json \"src/**/*.{ts,tsx}\"",
     "lintstaged": "lint-staged --allow-empty",
@@ -32,12 +37,15 @@
     "husky": "^8.0.1",
     "jest": "^29.2.2",
     "lint-staged": "^13.0.3",
+    "parcel": "^2.7.0",
     "prettier": "2.7.1",
     "ts-jest": "^29.0.3"
   },
   "dependencies": {
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.14",
     "@types/node": "^18.11.8",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.4"
