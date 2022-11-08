@@ -13,3 +13,9 @@ export type Student = {
   birthday: Date;
   fieldOfStudy: FieldOfStudy;
 };
+
+export type ToDo = {
+  id: number;
+  task: string;
+  isDone: boolean;
+};
