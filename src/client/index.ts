@@ -4,8 +4,8 @@ import { serverPort, serverUrl } from '../constans/index';
 
 const toDosURL = `${serverUrl}:${serverPort}/todos`;
 
-fetchJSON(toDosURL)
-  .then((toDos: ToDo[]) => renderToDosTable(toDos))
+fetchJSON<ToDo[]>(toDosURL)
+  .then((toDos) => renderToDosTable(toDos))
   .catch((error) => console.error(error));
 
 function renderToDosTable(toDos: ToDo[]): void {
