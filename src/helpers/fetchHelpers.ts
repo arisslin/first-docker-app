@@ -1,7 +1,5 @@
-import { serverUrl, serverPort } from '../constans/index';
-
-export async function fetchToDos() {
-  const response = await fetch(serverUrl + ':' + serverPort + '/todos');
+export async function fetchJSON(url: string) {
+  const response = await fetch(url);
 
   if (!response.ok) {
     const message = `An error has occured. Status ${response.status}`;

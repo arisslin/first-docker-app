@@ -1,7 +1,10 @@
 import { ToDo } from '../types/index';
-import { fetchToDos } from '../helpers/fetchHelpers';
+import { fetchJSON } from '../helpers/fetchHelpers';
+import { serverPort, serverUrl } from '../constans/index';
 
-fetchToDos()
+const toDosURL = `${serverUrl}:${serverPort}/todos`;
+
+fetchJSON(toDosURL)
   .then((toDos: ToDo[]) => renderToDosTable(toDos))
   .catch((error) => console.error(error));
 
