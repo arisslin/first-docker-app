@@ -1,10 +1,10 @@
-import { Student } from '../types/index';
-import { fetchStudents } from '../helpers/fetchHelpers';
+import { ToDo } from '../types/index';
+import { fetchToDos } from '../helpers/fetchHelpers';
 
-fetchStudents()
-  .then((students: Student[]) => renderStudentsTable(students))
+fetchToDos()
+  .then((toDos: ToDo[]) => renderToDosTable(toDos))
   .catch((error) => console.error(error));
 
-function renderStudentsTable(students: Student[]): void {
-  console.log(students);
+function renderToDosTable(toDos: ToDo[]): void {
+  console.log(toDos);
 }
