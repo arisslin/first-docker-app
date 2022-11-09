@@ -2,7 +2,7 @@ import { ToDo } from '../types/index';
 import { fetchJSON } from '../helpers/fetchHelpers';
 import { serverPort, serverUrl } from '../constans/index';
 
-const toDosURL = `${serverUrl}:${serverPort}/todos`;
+const toDosURL = `${serverUrl}:${serverPort}/todaos`;
 
 fetchJSON<ToDo[]>(toDosURL)
   .then((toDos) => renderToDosTable(toDos))
