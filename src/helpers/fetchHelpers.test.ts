@@ -1,8 +1,8 @@
 import { ToDo } from '../types/index';
-import { fetchJSON } from './fetchHelpers';
+import { fetchFrom } from './fetchHelpers';
 import { mockRejectedApiCall, mockResolvedApiCall } from './testHelpers';
 
-describe('fetchJSON()', () => {
+describe('fetchFrom()', () => {
   const MOCK_API_ANSWER: ToDo[] = [
     { id: 1, task: 'Do something', isDone: true },
   ];
@@ -14,7 +14,7 @@ describe('fetchJSON()', () => {
       .fn()
       .mockImplementation(mockResolvedApiCall(MOCK_API_ANSWER));
 
-    const answer = await fetchJSON(url);
+    const answer = await fetchFrom(url);
 
     expect(answer).toEqual(MOCK_API_ANSWER);
     expect(global.fetch).toBeCalledTimes(1);
@@ -26,7 +26,7 @@ describe('fetchJSON()', () => {
       .mockImplementation(mockRejectedApiCall(MOCK_API_REJECT));
 
     try {
-      await fetchJSON(url);
+      await fetchFrom(url);
     } catch (error) {
       expect(error).toBe(MOCK_API_REJECT);
     }

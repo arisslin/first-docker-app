@@ -1,6 +1,8 @@
-export async function fetchJSON<Type>(url: string): Promise<Type> {
+export async function fetchFrom<Type>(url: string): Promise<Type> {
   try {
-    const response = await fetch(url, { method: '' });
+    const response = await fetch(url, {
+      method: 'GET',
+    });
 
     return await response.json();
   } catch (error) {
