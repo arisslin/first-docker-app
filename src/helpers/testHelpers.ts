@@ -8,3 +8,11 @@ export function mockResolvedApiCall(
     })
   ) as jest.Mock;
 }
+
+export function mockRejectedApiCall(error: string) {
+  return jest.fn(() =>
+    Promise.resolve({
+      json: () => Promise.reject(error),
+    })
+  ) as jest.Mock;
+}
