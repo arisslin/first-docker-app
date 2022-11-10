@@ -1,7 +1,7 @@
 import { ToDo } from '../../../../types/index';
 
 function createToDo({ id, task, isDone }: ToDo): HTMLDivElement {
-  const identifier = `to-do-${id.toString()}`;
+  const identifier = 'to-do-' + id;
   const checkbox = document.createElement('input');
 
   checkbox.type = 'checkbox';
