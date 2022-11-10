@@ -1,12 +1,16 @@
-import { serverUrl, serverPort } from '../constans/index';
+export async function fetchFrom<Type>(
+  url: string,
+  responseType: 'json' | 'text' = 'json'
+): Promise<Type> {
+  try {
+    const response = await fetch(url, {
+      method: 'GET',
+    });
 
-export async function fetchToDos() {
-  const response = await fetch(serverUrl + ':' + serverPort + '/todos');
+    return (await responseType) === 'json' ? response.json() : response.text();
+  } catch (error) {
+    console.error('Fetch failed!');
 
-  if (!response.ok) {
-    const message = `An error has occured. Status ${response.status}`;
-    throw new Error(message);
+    throw error;
   }
-
-  return await response.json();
 }
