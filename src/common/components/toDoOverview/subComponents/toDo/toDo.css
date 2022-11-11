@@ -1,0 +1,16 @@
+.to-do {
+  display: flex;
+  align-items: center;
+}
+
+.to-do__checkbox {
+  --abc: 20px;
+
+  margin: 3px 10px 3px 4px;
+  height: var(--abc);
+  width: var(--abc);
+}
+
+.to-do__label {
+  line-height: 1;
+}
