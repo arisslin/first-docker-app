@@ -1,3 +1,8 @@
+:root {
+  --color-dark: rgb(32, 32, 32);
+  --color-light-grey: rgb(186, 186, 186);
+}
+
 * {
   box-sizing: border-box;
 }
