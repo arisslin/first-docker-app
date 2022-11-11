@@ -1,8 +1,20 @@
+:root {
+  --color-dark: rgb(24, 24, 24);
+  --color-light-grey: rgb(186, 186, 186);
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  color: var(--color-dark);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+  margin: 0 auto;
+  padding: 0 1rem;
+  max-width: 1200px;
 }

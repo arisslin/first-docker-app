@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { mockedToDos } from '../mocks/mockedTodos';
+import { mockedToDos } from '../common/mocks/mockedTodos';
 
 const app = express();
 const port = 8000;

@@ -1,13 +1,14 @@
-import { ToDo } from '../types/index';
-import { fetchFrom } from '../helpers/fetchHelpers';
-import { serverPort, serverUrl } from '../constans/index';
+import { ToDo } from '../common/types/index';
+import { fetchFrom } from '../common/helpers/fetchHelpers';
+import { serverPort, serverUrl } from '../common/constants/index';
+import createToDoOverview from '../common/components/toDoOverview/toDoOverview';
 
 const toDosURL = `${serverUrl}:${serverPort}/todos`;
 
 fetchFrom<ToDo[]>(toDosURL)
-  .then((toDos) => renderToDosTable(toDos))
-  .catch((error) => console.error(error));
+  .then((toDos) => {
+    const toDosOverview = createToDoOverview(toDos);
 
-function renderToDosTable(toDos: ToDo[]): void {
-  console.log(toDos);
-}
+    toDosOverview && document.querySelector('main')?.appendChild(toDosOverview);
+  })
+  .catch((error) => console.error(error));
