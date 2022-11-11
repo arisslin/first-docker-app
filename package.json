@@ -9,7 +9,7 @@
     "client:dev": "parcel src/client/index.html",
     "docker:build-client": "docker build -f client.Dockerfile -t to-do-app-client:1 .",
     "docker:build-server": "docker build -f server.Dockerfile -t to-do-app-server:1 .",
-    "docker:run-client": "docker run --init -p 8080:80 to-do-app-server:1",
+    "docker:run-client": "docker run --init -p 8080:80 to-do-app-client:1",
     "docker:run-server": "docker run --init -p 8000:8000 to-do-app-server:1",
     "husky:prepare": "husky install",
     "lint": "eslint -c .eslintrc.json \"src/**/*.{ts,tsx}\"",
