@@ -1,5 +1,5 @@
 :root {
-  --color-dark: rgb(32, 32, 32);
+  --color-dark: rgb(24, 24, 24);
   --color-light-grey: rgb(186, 186, 186);
 }
 
@@ -9,6 +9,7 @@
 
 body {
   margin: 0;
+  color: var(--color-dark);
   font-family: Arial, Helvetica, sans-serif;
 }
 
