@@ -1,6 +1,5 @@
 import express from 'express';
 import cors from 'cors';
-import { mockedToDos } from '../common/mocks/mockedTodos';
 import { readFile } from 'fs';
 
 const app = express();
