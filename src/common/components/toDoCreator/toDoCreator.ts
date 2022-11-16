@@ -1,7 +1,10 @@
-function createToDoCreator(handleSubmit: () => void): HTMLFormElement {
+function createToDoCreator(
+  handleSubmit: () => void,
+  url = ''
+): HTMLFormElement {
   const form = document.createElement('form');
 
-  form.action = '';
+  form.action = url;
   form.method = 'post';
   form.innerHTML =
     '<input type="text" name="name" id="name" /><button>Add</button>';
