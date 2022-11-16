@@ -13,4 +13,6 @@
 
 .to-do__label {
   line-height: 1;
+
+  font-size: var(--font-size-base);
 }

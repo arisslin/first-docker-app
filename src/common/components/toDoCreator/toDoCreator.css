@@ -1,0 +1,35 @@
+.to-do-creator {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+
+  margin-top: 1rem;
+}
+
+.to-do-creator__button {
+  --size: 46px;
+
+  flex-basis: var(--size);
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  border: 0;
+  border-radius: 50%;
+  height: var(--size);
+  width: var(--size);
+
+  background-color: rgb(41, 132, 235);
+  color: white;
+  box-shadow: var(--shadow-default);
+  font-size: var(--font-size-base);
+}
+
+.to-do-creator__input {
+  border: 1px solid var(--color-dark);
+  border-radius: 3px;
+  padding: 0.5rem;
+  width: 100%;
+
+  box-shadow: var(--shadow-default);
+  font-size: var(--font-size-base);
+}
