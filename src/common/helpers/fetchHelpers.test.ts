@@ -4,7 +4,7 @@ import { mockRejectedApiCall, mockResolvedApiCall } from './testHelpers';
 
 describe('fetchFrom()', () => {
   const MOCK_API_ANSWER_JSON: ToDo[] = [
-    { id: 1, task: 'Do something', isDone: true },
+    { id: '1', task: 'Do something', isDone: true },
   ];
   const MOCK_API_ANSWER_TEXT = 'Hello World!';
   const MOCK_API_REJECT = 'API is down!';
