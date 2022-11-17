@@ -1,8 +1,7 @@
 import createToDoCreator from './toDoCreator';
 
 describe('createToDoCreator()', () => {
-  const handleSubmit = jest.fn();
-  const toDoCreator = createToDoCreator(handleSubmit);
+  const toDoCreator = createToDoCreator();
 
   it('is created as HTMLFormElement with post method', () => {
     expect(toDoCreator.tagName).toBe('FORM');
@@ -23,15 +22,9 @@ describe('createToDoCreator()', () => {
     expect(toDoCreator.querySelector('button')).toBeTruthy();
   });
 
-  it('can handle a function ob submit events', () => {
-    toDoCreator.submit();
-
-    expect(handleSubmit).toHaveBeenCalledTimes(1);
-  });
-
-  it('can handle a function ob submit events', () => {
+  it('can set an url to input action', () => {
     const url = 'http://www.test.de/';
-    const toDoCreatorWithUrl = createToDoCreator(handleSubmit, url);
+    const toDoCreatorWithUrl = createToDoCreator(url);
 
     expect(toDoCreatorWithUrl.action).toBe(url);
   });
