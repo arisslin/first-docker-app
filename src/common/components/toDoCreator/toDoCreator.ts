@@ -1,3 +1,4 @@
+import { nanoid } from '../../../../node_modules/nanoid/index';
 import createToDo from '../toDoOverview/subComponents/toDo/toDo';
 import { toDoOverviewId } from '../toDoOverview/toDoOverview';
 import './toDoCreator.css';
@@ -25,7 +26,11 @@ function createToDoCreator(url = ''): HTMLFormElement {
     event.preventDefault();
 
     const toDoOverview = document.getElementById(toDoOverviewId);
-    const newToDo = createToDo({ id: 4, task: input.value, isDone: false });
+    const newToDo = createToDo({
+      id: nanoid(),
+      task: input.value,
+      isDone: false,
+    });
 
     toDoOverview?.appendChild(newToDo);
     input.value = '';
