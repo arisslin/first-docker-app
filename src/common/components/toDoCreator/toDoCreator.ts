@@ -1,7 +1,7 @@
 import './toDoCreator.css';
 
 function createToDoCreator(
-  handleSubmit: () => void,
+  handleSubmit: (event?: SubmitEvent) => void,
   url = ''
 ): HTMLFormElement {
   const form = document.createElement('form');
@@ -9,8 +9,8 @@ function createToDoCreator(
   form.action = url;
   form.className = 'to-do-creator';
   form.method = 'post';
-  form.addEventListener('submit', (element) => {
-    element.preventDefault();
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
     handleSubmit();
   });
 
