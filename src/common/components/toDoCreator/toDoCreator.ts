@@ -24,24 +24,29 @@ function createToDoCreator(url = ''): HTMLFormElement {
   form.method = 'post';
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-
-    const toDoOverview = document.getElementById(toDoOverviewId);
-
-    if (input.value) {
-      const newToDo = createToDo({
-        id: uuidv4(),
-        task: input.value,
-        isDone: false,
-      });
-
-      toDoOverview?.appendChild(newToDo);
-      input.value = '';
-    }
+    appendToDoToOverview(input);
   });
   form.appendChild(input);
   form.appendChild(button);
 
   return form;
+}
+
+function appendToDoToOverview(input: HTMLInputElement): void {
+  const toDoOverview = document.getElementById(
+    toDoOverviewId
+  ) as HTMLFieldSetElement | null;
+
+  if (input.value && toDoOverview) {
+    const newToDo = createToDo({
+      id: uuidv4(),
+      task: input.value,
+      isDone: false,
+    });
+
+    toDoOverview?.appendChild(newToDo);
+    input.value = '';
+  }
 }
 
 export default createToDoCreator;
