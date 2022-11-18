@@ -26,14 +26,17 @@ function createToDoCreator(url = ''): HTMLFormElement {
     event.preventDefault();
 
     const toDoOverview = document.getElementById(toDoOverviewId);
-    const newToDo = createToDo({
-      id: uuidv4(),
-      task: input.value,
-      isDone: false,
-    });
 
-    toDoOverview?.appendChild(newToDo);
-    input.value = '';
+    if (input.value) {
+      const newToDo = createToDo({
+        id: uuidv4(),
+        task: input.value,
+        isDone: false,
+      });
+
+      toDoOverview?.appendChild(newToDo);
+      input.value = '';
+    }
   });
   form.appendChild(input);
   form.appendChild(button);
