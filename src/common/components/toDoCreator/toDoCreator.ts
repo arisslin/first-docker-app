@@ -1,4 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
+import { toDosURL } from '../../constants/index';
+import { fetchToDoTo } from '../../helpers/fetchHelpers';
+import { ToDo } from '../../types/index';
 import createToDo from '../toDoOverview/subComponents/toDo/toDo';
 import { toDoOverviewId } from '../toDoOverview/toDoOverview';
 import './toDoCreator.css';
@@ -32,20 +35,32 @@ function createToDoCreator(url = ''): HTMLFormElement {
   return form;
 }
 
-function appendToDoToOverview(input: HTMLInputElement): void {
+function appendToDoToOverview(input: HTMLInputElement) {
   const toDoOverview = document.getElementById(
     toDoOverviewId
   ) as HTMLFieldSetElement | null;
 
   if (input.value && toDoOverview) {
-    const newToDo = createToDo({
+    const newToDoData: ToDo = {
       id: uuidv4(),
       task: input.value,
       isDone: false,
-    });
+    };
 
-    toDoOverview?.appendChild(newToDo);
-    input.value = '';
+    fetchToDoTo(toDosURL, newToDoData)
+      .then((response) => {
+        if (response.ok) {
+          const newToDo = createToDo(newToDoData);
+
+          toDoOverview?.appendChild(newToDo);
+        } else {
+          console.log('Posting to do failed!');
+        }
+      })
+      .catch((error) => console.error(error))
+      .finally(() => {
+        input.value = '';
+      });
   }
 }
 
