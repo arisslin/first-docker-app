@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { getToDos } from './todos.controller';
+import { getToDos, postToDos } from './todos.controller';
 
 const router = Router();
 
-router.route('/').get(getToDos);
+router.route('/').get(getToDos).post(postToDos);
 
 export default router;

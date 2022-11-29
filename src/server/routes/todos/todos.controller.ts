@@ -21,3 +21,11 @@ export function getToDos(request: Request, response: Response): void {
     }
   });
 }
+
+export function postToDos(request: Request, response: Response): void {
+  console.log(request.body);
+
+  response.type('application/json');
+  response.status(404);
+  response.send(JSON.stringify('Added to do!'));
+}
