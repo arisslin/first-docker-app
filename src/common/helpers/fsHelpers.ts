@@ -1,6 +1,6 @@
 import { readFile } from 'fs';
 
-export function readJSONFromFS(filePath: string) {
+export function readJSONFromFS<Type>(filePath: string): Promise<Type> {
   if (!filePath) {
     throw 'file path is required';
   }

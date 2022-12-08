@@ -1,10 +1,12 @@
 import { readJSONFromFS } from './fsHelpers';
 
 describe('readJSONFromFS()', () => {
+  type TestData = { test: string };
+
   it('throws if filePath is empty', () => {
     expect.assertions(1);
     try {
-      readJSONFromFS('');
+      readJSONFromFS<TestData>('');
     } catch (error) {
       expect(error).toBe('file path is required');
     }
@@ -12,7 +14,7 @@ describe('readJSONFromFS()', () => {
 
   it('returns data from the filesystem', async () => {
     const filePath = 'src/common/mocks/mockedTestJson.json';
-    const receivedData = await readJSONFromFS(filePath);
+    const receivedData = await readJSONFromFS<TestData>(filePath);
 
     expect.assertions(1);
     expect(receivedData).toEqual({ test: 'Hello World!' });
