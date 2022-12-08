@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { toDosURL } from '../../constants/index';
-import { fetchToDoTo } from '../../helpers/fetchHelpers';
+import { fetchPostToDo, fetchToDoTo } from '../../helpers/fetchHelpers';
 import { ToDo } from '../../types/index';
 import createToDo from '../toDoOverview/subComponents/toDo/toDo';
 import { toDoOverviewId } from '../toDoOverview/toDoOverview';
@@ -47,20 +47,29 @@ function appendToDoToOverview(input: HTMLInputElement) {
       isDone: false,
     };
 
-    fetchToDoTo(toDosURL, newToDoData)
-      .then((response) => {
-        if (response.ok) {
-          const newToDo = createToDo(newToDoData);
-
-          toDoOverview?.appendChild(newToDo);
-        } else {
-          console.log('Posting to do failed!');
-        }
+    fetchPostToDo(newToDoData)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
       })
-      .catch((error) => console.error(error))
       .finally(() => {
         input.value = '';
       });
+
+    // fetchToDoTo(toDosURL, newToDoData)
+    //   .then((response) => {
+    //     if (response.ok) {
+    //       const newToDo = createToDo(newToDoData);
+
+    //       toDoOverview?.appendChild(newToDo);
+    //     } else {
+    //       console.log('Posting to do failed!');
+    //     }
+    //   })
+    //   .catch((error) => console.error(error))
+    //   .finally(() => {
+    //     input.value = '';
+    //   });
   }
 }
 

@@ -14,20 +14,20 @@ export async function fetchGetToDos(): Promise<ToDo[] | undefined> {
   }
 }
 
-export async function fetchToDoTo(url: string, data: ToDo) {
+export async function fetchPostToDo(toDo: ToDo) {
   try {
-    const response = await fetch(url, {
+    const response = await fetch(toDosURL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(toDo),
     });
 
     return response;
   } catch (error) {
-    console.error('POST fetch to do failed!');
+    console.error('ERROR: Fetch POST to do failed!');
 
-    throw error;
+    return undefined;
   }
 }
