@@ -8,7 +8,7 @@ export function readJSONFromFS(filePath: string) {
   return new Promise((resolve, reject) => {
     readFile(filePath, (error, data) => {
       if (error) {
-        reject(error);
+        reject('Error: no such file or directory, open ' + filePath);
       } else {
         const dataString = data.toString();
         const dataJSON = JSON.parse(dataString);
