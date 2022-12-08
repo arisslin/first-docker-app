@@ -33,4 +33,14 @@ describe('readJSONFromFS()', () => {
       );
     }
   });
+
+  it('rejects if file is no json file', async () => {
+    const filePath = 'src/common/mocks/mockedText.txt';
+
+    try {
+      await readJSONFromFS(filePath);
+    } catch (error) {
+      expect(error).toMatch('Error: file is no json file: ' + filePath);
+    }
+  });
 });

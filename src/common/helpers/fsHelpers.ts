@@ -9,11 +9,15 @@ export function readJSONFromFS<Type>(filePath: string): Promise<Type> {
     readFile(filePath, (error, data) => {
       if (error) {
         reject('Error: no such file or directory, open ' + filePath);
-      } else {
+      }
+
+      try {
         const dataString = data.toString();
         const dataJSON = JSON.parse(dataString);
 
         resolve(dataJSON);
+      } catch (error) {
+        reject('Error: file is no json file: ' + filePath);
       }
     });
   });
