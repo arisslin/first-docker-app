@@ -1,19 +1,16 @@
+import { toDosURL } from '../constants/index';
 import { ToDo } from '../types/index';
 
-export async function fetchFrom<Type>(
-  url: string,
-  responseType: 'json' | 'text' = 'json'
-): Promise<Type> {
+export async function fetchGetToDos(): Promise<ToDo[] | undefined> {
   try {
-    const response = await fetch(url, {
-      method: 'GET',
-    });
+    const result = await fetch(toDosURL);
+    const toDos = await result.json();
 
-    return (await responseType) === 'json' ? response.json() : response.text();
+    return toDos;
   } catch (error) {
-    console.error('Fetch failed!');
+    console.error('ERROR: Fetch GET to dos failed!');
 
-    throw error;
+    return undefined;
   }
 }
 

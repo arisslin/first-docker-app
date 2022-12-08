@@ -1,13 +1,11 @@
-import { ToDo } from '../common/types/index';
-import { fetchFrom } from '../common/helpers/fetchHelpers';
-import { toDosURL } from '../common/constants/index';
+import { fetchGetToDos } from '../common/helpers/fetchHelpers';
 import createToDoOverview from '../common/components/toDoOverview/toDoOverview';
 import createToDoCreator from '../common/components/toDoCreator/toDoCreator';
 
-fetchFrom<ToDo[]>(toDosURL)
+fetchGetToDos()
   .then((toDos) => {
     const mainElement = document.querySelector('main');
-    const toDosOverview = createToDoOverview(toDos);
+    const toDosOverview = toDos ? createToDoOverview(toDos) : undefined;
 
     toDosOverview && mainElement?.appendChild(toDosOverview);
 
