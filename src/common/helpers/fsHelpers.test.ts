@@ -1,4 +1,8 @@
 import { errorFilePathIsRequired } from '../errors/globalError';
+import {
+  createNoJSONFileError,
+  createWrongFilePathError,
+} from '../errors/serverErrors';
 import { readJSONFromFS } from './fsHelpers';
 
 describe('readJSONFromFS()', () => {
@@ -16,27 +20,23 @@ describe('readJSONFromFS()', () => {
     expect(receivedData).toEqual({ test: 'Hello World!' });
   });
 
-  it('rejects an error if path is wrong', async () => {
+  it('rejects an error if path is wrong', () => {
     const filePath = 'src/common/mocks/mockedTestJsona.json';
 
     expect.assertions(1);
-    try {
-      await readJSONFromFS(filePath);
-    } catch (error) {
-      expect(error).toMatch(
-        'Error: no such file or directory, open ' +
-          'src/common/mocks/mockedTestJsona.json'
-      );
-    }
+
+    return expect(readJSONFromFS(filePath)).rejects.toEqual(
+      createWrongFilePathError(filePath)
+    );
   });
 
   it('rejects if file is no json file', async () => {
     const filePath = 'src/common/mocks/mockedText.txt';
 
-    try {
-      await readJSONFromFS(filePath);
-    } catch (error) {
-      expect(error).toMatch('Error: file is no json file: ' + filePath);
-    }
+    expect.assertions(1);
+
+    return expect(readJSONFromFS(filePath)).rejects.toEqual(
+      createNoJSONFileError(filePath)
+    );
   });
 });

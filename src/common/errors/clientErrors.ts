@@ -1,2 +1,2 @@
 export const createFetchGetError = (routeName: string) =>
-  new Error(`ERROR: Fetch GET failed on route ${routeName}`);
+  new Error(`Fetch GET failed on route ${routeName}`);

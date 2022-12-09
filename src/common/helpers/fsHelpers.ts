@@ -1,5 +1,9 @@
 import { readFile } from 'fs';
 import { errorFilePathIsRequired } from '../errors/globalError';
+import {
+  createNoJSONFileError,
+  createWrongFilePathError,
+} from '../errors/serverErrors';
 
 export function readJSONFromFS<Type>(filePath: string): Promise<Type> {
   if (!filePath) {
@@ -9,7 +13,7 @@ export function readJSONFromFS<Type>(filePath: string): Promise<Type> {
   return new Promise((resolve, reject) => {
     readFile(filePath, (error, data) => {
       if (error) {
-        reject('Error: no such file or directory, open ' + filePath);
+        reject(createWrongFilePathError(filePath));
       }
 
       try {
@@ -18,7 +22,7 @@ export function readJSONFromFS<Type>(filePath: string): Promise<Type> {
 
         resolve(dataJSON);
       } catch (error) {
-        reject('Error: file is no json file: ' + filePath);
+        reject(createNoJSONFileError(filePath));
       }
     });
   });

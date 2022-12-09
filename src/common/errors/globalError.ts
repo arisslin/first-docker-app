@@ -1,1 +1,1 @@
-export const errorFilePathIsRequired = new Error('file path is required');
+export const errorFilePathIsRequired = new Error('File path is required');
