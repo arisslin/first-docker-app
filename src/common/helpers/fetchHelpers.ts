@@ -14,7 +14,7 @@ export async function fetchGetToDos(): Promise<ToDo[] | undefined> {
   }
 }
 
-export async function fetchPostToDo(toDo: ToDo) {
+export async function fetchPostToDo(toDo: ToDo): Promise<Response | undefined> {
   try {
     const response = await fetch(toDosURL, {
       method: 'POST',
