@@ -1,4 +1,8 @@
-import { createFetchGetError } from '../errors/clientErrors';
+import { toDosURL } from '../constants/index';
+import {
+  createFetchGetError,
+  createFetchPostError,
+} from '../errors/clientErrors';
 import { ToDo } from '../types/index';
 import { fetchGetToDos, fetchPostToDo } from './fetchHelpers';
 
@@ -12,14 +16,14 @@ describe('fetchGetToDos', () => {
         json: () => Promise.resolve(mockedToDos),
       })
     ) as jest.Mock;
-
+    expect.assertions(1);
     expect(await fetchGetToDos()).toEqual(mockedToDos);
   });
 
   it('rejects undefined', async () => {
     global.fetch = jest.fn().mockRejectedValueOnce(mockedError);
-
-    await expect(fetchGetToDos).rejects.toThrow(createFetchGetError('/todos'));
+    expect.assertions(1);
+    await expect(fetchGetToDos).rejects.toThrow(createFetchGetError(toDosURL));
   });
 });
 
@@ -28,13 +32,16 @@ describe('fetchPostToDo()', () => {
     const mockedResponse = 'response';
 
     global.fetch = jest.fn(() => Promise.resolve(mockedResponse)) as jest.Mock;
-
+    expect.assertions(1);
     expect(await fetchPostToDo(mockedToDos[0])).toBe(mockedResponse);
   });
 
-  it('rejects undefined', async () => {
+  it('rejects undefined', () => {
     global.fetch = jest.fn().mockRejectedValueOnce(mockedError);
+    expect.assertions(1);
 
-    expect(await fetchPostToDo(mockedToDos[0])).toBe(undefined);
+    return expect(fetchPostToDo(mockedToDos[0])).rejects.toEqual(
+      createFetchPostError(toDosURL)
+    );
   });
 });

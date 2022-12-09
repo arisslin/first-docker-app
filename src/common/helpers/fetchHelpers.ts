@@ -1,19 +1,22 @@
 import { toDosURL } from '../constants/index';
-import { createFetchGetError } from '../errors/clientErrors';
+import {
+  createFetchGetError,
+  createFetchPostError,
+} from '../errors/clientErrors';
 import { ToDo } from '../types/index';
 
-export async function fetchGetToDos(): Promise<ToDo[] | undefined> {
+export async function fetchGetToDos(): Promise<ToDo[]> {
   try {
     const result = await fetch(toDosURL);
     const toDos = await result.json();
 
     return toDos;
   } catch (error) {
-    throw createFetchGetError('/todos');
+    throw createFetchGetError(toDosURL);
   }
 }
 
-export async function fetchPostToDo(toDo: ToDo): Promise<Response | undefined> {
+export async function fetchPostToDo(toDo: ToDo) {
   try {
     const response = await fetch(toDosURL, {
       method: 'POST',
@@ -25,8 +28,6 @@ export async function fetchPostToDo(toDo: ToDo): Promise<Response | undefined> {
 
     return response;
   } catch (error) {
-    console.error('ERROR: Fetch POST to do failed!');
-
-    return undefined;
+    throw createFetchPostError(toDosURL);
   }
 }

@@ -8,7 +8,7 @@ export async function getToDos(
   request: Request,
   response: Response,
   next: NextFunction
-) {
+): Promise<void> {
   try {
     const toDos = await readJSONFromFS<ToDo[]>(dataPath);
 
@@ -20,10 +20,20 @@ export async function getToDos(
   }
 }
 
-export function postToDos(request: Request, response: Response): void {
+export async function postToDos(
+  request: Request,
+  response: Response,
+  next: NextFunction
+) {
   console.log(request.body);
 
-  response.type('application/json');
-  response.status(200);
-  response.send(JSON.stringify('Added to do!'));
+  try {
+    const toDos = await readJSONFromFS<ToDo[]>(dataPath + 'a');
+
+    response.type('application/json');
+    response.status(200);
+    response.send(JSON.stringify('Added to do!'));
+  } catch (error) {
+    next(error);
+  }
 }
