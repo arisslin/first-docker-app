@@ -1,6 +1,7 @@
 import { Response, Request, NextFunction } from 'express';
+import { errorNoToDo } from '../../../common/errors/globalError';
 import { readJSONFromFS } from '../../../common/helpers/fsHelpers';
-import { ToDo } from '../../../common/types/index';
+import { isToDo, ToDo } from '../../../common/types/index';
 
 const dataPath = 'src/common/mocks/mockedTodos.json';
 
@@ -25,21 +26,19 @@ export async function postToDos(
   response: Response,
   next: NextFunction
 ): Promise<void> {
-  console.log(request.body);
+  if (!isToDo(request.body)) {
+    next(errorNoToDo);
+  } else {
+    try {
+      const toDos = await readJSONFromFS<ToDo[]>(dataPath);
 
-  try {
-    const toDos = await readJSONFromFS<ToDo[]>(dataPath);
+      // wenn ja -> Todo in Datei schreiben
 
-    // ist es ein toDo?
-
-    // wenn nein -> Fehler
-
-    // wenn ja -> Todo in Datei schreiben
-
-    response.type('application/json');
-    response.status(200);
-    response.send(JSON.stringify('Added to do!'));
-  } catch (error) {
-    next(error);
+      response.type('application/json');
+      response.status(200);
+      response.send(JSON.stringify('Added to do!'));
+    } catch (error) {
+      next(error);
+    }
   }
 }
