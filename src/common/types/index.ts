@@ -5,5 +5,9 @@ export type ToDo = {
 };
 
 export const isToDo = (arg: any) => {
-  return false;
+  if (typeof arg !== 'object') {
+    return false;
+  }
+
+  return true;
 };
