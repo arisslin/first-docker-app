@@ -5,9 +5,19 @@ export type ToDo = {
 };
 
 export const isToDo = (arg: any) => {
-  if (typeof arg !== 'object') {
-    return false;
+  const argLength =
+    typeof arg === 'object' && arg !== null
+      ? Object.entries(arg).length
+      : undefined;
+
+  if (
+    argLength === 3 &&
+    arg.id !== undefined &&
+    arg.task !== undefined &&
+    arg.isDone !== undefined
+  ) {
+    return true;
   }
 
-  return true;
+  return false;
 };
