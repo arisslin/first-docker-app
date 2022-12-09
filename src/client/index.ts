@@ -4,8 +4,6 @@ import createToDoCreator from '../common/components/toDoCreator/toDoCreator';
 
 fetchGetToDos()
   .then((toDos) => {
-    console.log('asd', toDos);
-
     const mainElement = document.querySelector('main');
     const toDosOverview = toDos ? createToDoOverview(toDos) : undefined;
 

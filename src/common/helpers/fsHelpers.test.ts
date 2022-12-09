@@ -3,7 +3,7 @@ import {
   createNoJSONFileError,
   createWrongFilePathError,
 } from '../errors/serverErrors';
-import { readJSONFromFS } from './fsHelpers';
+import { readJSONFromFS, writeJSONToFs } from './fsHelpers';
 
 describe('readJSONFromFS()', () => {
   type TestData = { test: string };
@@ -37,6 +37,16 @@ describe('readJSONFromFS()', () => {
 
     return expect(readJSONFromFS(filePath)).rejects.toEqual(
       createNoJSONFileError(filePath)
+    );
+  });
+});
+
+describe('writeJSONToFs()', () => {
+  const mockedData = JSON.stringify([]);
+
+  it('throws if filePath is empty', () => {
+    expect(() => writeJSONToFs('', mockedData)).toThrow(
+      errorFilePathIsRequired
     );
   });
 });

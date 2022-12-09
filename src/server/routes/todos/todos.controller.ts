@@ -1,6 +1,10 @@
 import { Response, Request, NextFunction } from 'express';
+import { writeFile } from 'fs';
 import { errorNoToDo } from '../../../common/errors/globalError';
-import { readJSONFromFS } from '../../../common/helpers/fsHelpers';
+import {
+  readJSONFromFS,
+  writeJSONToFs,
+} from '../../../common/helpers/fsHelpers';
 import { isToDo, ToDo } from '../../../common/types/index';
 
 const dataPath = 'src/common/mocks/mockedTodos.json';
@@ -31,8 +35,10 @@ export async function postToDos(
   } else {
     try {
       const toDos = await readJSONFromFS<ToDo[]>(dataPath);
+      const newToDos: ToDo[] = [...toDos, request.body];
+      const newToDosStringified = JSON.stringify(newToDos);
 
-      // wenn ja -> Todo in Datei schreiben
+      await writeJSONToFs(dataPath, newToDosStringified);
 
       response.type('application/json');
       response.status(200);

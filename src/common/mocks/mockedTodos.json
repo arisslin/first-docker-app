@@ -1,5 +1,1 @@
-[
-  { "id": "1", "task": "Buy bread", "isDone": false },
-  { "id": "2", "task": "Learn react", "isDone": false },
-  { "id": "3", "task": "Build a bridge", "isDone": true }
-]
+[{"id":"1","task":"Buy bread","isDone":false},{"id":"2","task":"Learn react","isDone":false},{"id":"3","task":"Build a bridge","isDone":true},{"id":"a400f729-5a92-407f-b06d-e83bb1368507","task":"test","isDone":false},{"id":"8c341d70-292d-4a66-b774-7e4923caf85c","task":"ugjfj","isDone":false}]
