@@ -1,10 +1,14 @@
-import { Response, Request } from 'express';
+import { Response, Request, NextFunction } from 'express';
 import { readJSONFromFS } from '../../../common/helpers/fsHelpers';
 import { ToDo } from '../../../common/types/index';
 
-const dataPath = 'src/common/mocks/mockedTodosa.json';
+const dataPath = 'src/common/mocks/mockedTodos.json';
 
-export async function getToDos(request: Request, response: Response) {
+export async function getToDos(
+  request: Request,
+  response: Response,
+  next: NextFunction
+) {
   try {
     const toDos = await readJSONFromFS<ToDo[]>(dataPath);
 
@@ -12,8 +16,7 @@ export async function getToDos(request: Request, response: Response) {
     response.status(200);
     response.send(toDos);
   } catch (error) {
-    console.error(getToDos.name, '-', error);
-    response.sendStatus(500);
+    next(error);
   }
 }
 
