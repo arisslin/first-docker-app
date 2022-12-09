@@ -28,7 +28,7 @@ export async function postToDos(
   console.log(request.body);
 
   try {
-    const toDos = await readJSONFromFS<ToDo[]>(dataPath + 'a');
+    const toDos = await readJSONFromFS<ToDo[]>(dataPath);
 
     response.type('application/json');
     response.status(200);

@@ -53,7 +53,7 @@ async function appendToDoToOverview(input: HTMLInputElement): Promise<void> {
 
       toDoOverview?.appendChild(newToDo);
     } else {
-      console.log('Posting to do in frontend failed!');
+      console.error('Posting to do in frontend failed!');
     }
 
     input.value = '';
