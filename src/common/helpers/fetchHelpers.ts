@@ -8,7 +8,7 @@ export async function fetchGetToDos(): Promise<ToDo[] | undefined> {
 
     return toDos;
   } catch (error) {
-    console.error('ERROR: Fetch GET to dos failed!');
+    console.error('ERROR: Fetch GET /todos failed!');
 
     return undefined;
   }
