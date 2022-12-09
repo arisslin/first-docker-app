@@ -1,15 +1,11 @@
+import { errorFilePathIsRequired } from '../errors/globalError';
 import { readJSONFromFS } from './fsHelpers';
 
 describe('readJSONFromFS()', () => {
   type TestData = { test: string };
 
   it('throws if filePath is empty', () => {
-    expect.assertions(1);
-    try {
-      readJSONFromFS<TestData>('');
-    } catch (error) {
-      expect(error).toBe('file path is required');
-    }
+    expect(() => readJSONFromFS<TestData>('')).toThrow(errorFilePathIsRequired);
   });
 
   it('returns data from the filesystem', async () => {

@@ -1,8 +1,9 @@
 import { readFile } from 'fs';
+import { errorFilePathIsRequired } from '../errors/globalError';
 
 export function readJSONFromFS<Type>(filePath: string): Promise<Type> {
   if (!filePath) {
-    throw 'file path is required';
+    throw errorFilePathIsRequired;
   }
 
   return new Promise((resolve, reject) => {
