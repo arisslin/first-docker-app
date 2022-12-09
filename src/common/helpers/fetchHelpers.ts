@@ -1,4 +1,5 @@
 import { toDosURL } from '../constants/index';
+import { createFetchGetError } from '../errors/clientErrors';
 import { ToDo } from '../types/index';
 
 export async function fetchGetToDos(): Promise<ToDo[] | undefined> {
@@ -8,9 +9,7 @@ export async function fetchGetToDos(): Promise<ToDo[] | undefined> {
 
     return toDos;
   } catch (error) {
-    console.error('ERROR: Fetch GET /todos failed!');
-
-    return undefined;
+    throw createFetchGetError('/todos');
   }
 }
 

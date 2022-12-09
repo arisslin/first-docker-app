@@ -1,3 +1,4 @@
+import { createFetchGetError } from '../errors/clientErrors';
 import { ToDo } from '../types/index';
 import { fetchGetToDos, fetchPostToDo } from './fetchHelpers';
 
@@ -18,7 +19,7 @@ describe('fetchGetToDos', () => {
   it('rejects undefined', async () => {
     global.fetch = jest.fn().mockRejectedValueOnce(mockedError);
 
-    expect(await fetchGetToDos()).toBe(undefined);
+    await expect(fetchGetToDos).rejects.toThrow(createFetchGetError('/todos'));
   });
 });
 
