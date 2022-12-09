@@ -24,7 +24,7 @@ export async function postToDos(
   request: Request,
   response: Response,
   next: NextFunction
-) {
+): Promise<void> {
   console.log(request.body);
 
   try {

@@ -16,7 +16,7 @@ export async function fetchGetToDos(): Promise<ToDo[]> {
   }
 }
 
-export async function fetchPostToDo(toDo: ToDo) {
+export async function fetchPostToDo(toDo: ToDo): Promise<Response> {
   try {
     const response = await fetch(toDosURL, {
       method: 'POST',
