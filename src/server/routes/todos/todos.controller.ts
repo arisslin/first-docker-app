@@ -30,6 +30,12 @@ export async function postToDos(
   try {
     const toDos = await readJSONFromFS<ToDo[]>(dataPath);
 
+    // ist es ein toDo?
+
+    // wenn nein -> Fehler
+
+    // wenn ja -> Todo in Datei schreiben
+
     response.type('application/json');
     response.status(200);
     response.send(JSON.stringify('Added to do!'));

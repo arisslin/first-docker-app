@@ -3,3 +3,7 @@ export type ToDo = {
   task: string;
   isDone: boolean;
 };
+
+export const isToDo = (arg: any) => {
+  return false;
+};
