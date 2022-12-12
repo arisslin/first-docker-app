@@ -4,17 +4,14 @@ export type ToDo = {
   isDone: boolean;
 };
 
-export const isToDo = (arg: any) => {
-  const argLength =
-    typeof arg === 'object' && arg !== null
-      ? Object.entries(arg).length
-      : undefined;
-
+export const isToDo = (arg: unknown) => {
   if (
-    argLength === 3 &&
-    arg.id !== undefined &&
-    arg.task !== undefined &&
-    arg.isDone !== undefined
+    typeof arg === 'object' &&
+    arg !== null &&
+    Object.entries(arg).length === 3 &&
+    Object.keys(arg).includes('id') &&
+    Object.keys(arg).includes('task') &&
+    Object.keys(arg).includes('isDone')
   ) {
     return true;
   }
