@@ -3,7 +3,7 @@ import {
   createNoJSONFileError,
   createWrongFilePathError,
 } from '../errors/serverErrors';
-import { readJSONFromFS, writeJSONToFs } from './fsHelpers';
+import { readJSONFromFS, writeToFs } from './fsHelpers';
 
 describe('readJSONFromFS()', () => {
   type TestData = { test: string };
@@ -45,8 +45,6 @@ describe('writeJSONToFs()', () => {
   const mockedData = JSON.stringify([]);
 
   it('throws if filePath is empty', () => {
-    expect(() => writeJSONToFs('', mockedData)).toThrow(
-      errorFilePathIsRequired
-    );
+    expect(() => writeToFs('', mockedData)).toThrow(errorFilePathIsRequired);
   });
 });

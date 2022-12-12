@@ -1,1 +1,5 @@
-[{"id":"1","task":"Buy bread","isDone":false},{"id":"2","task":"Learn react","isDone":false},{"id":"3","task":"Build a bridge","isDone":true},{"id":"13dbbf2d-4a76-4cf3-99fa-b77c26cad717","task":"dfg","isDone":false},{"id":"1766a89a-e8ff-4469-b27d-6c980f1762f8","task":"adsasd","isDone":false},{"id":"16fd18e6-8715-42f4-813d-0b9e82ea1e3d","task":"asdads","isDone":false},{"id":"87a84be1-41ea-4e45-a16b-34aef27b39b8","task":"test","isDone":false},{"id":"8130f05f-2bb9-4b81-bb09-c941046a195f","task":"asd","isDone":false}]
+[
+  { "id": "1", "task": "Buy bread", "isDone": false },
+  { "id": "2", "task": "Learn react", "isDone": false },
+  { "id": "3", "task": "Build a bridge", "isDone": true }
+]

@@ -1,9 +1,6 @@
 import { Response, Request, NextFunction } from 'express';
 import { errorNoToDo } from '../../../common/errors/globalError';
-import {
-  readJSONFromFS,
-  writeJSONToFs,
-} from '../../../common/helpers/fsHelpers';
+import { readJSONFromFS, writeToFs } from '../../../common/helpers/fsHelpers';
 import { isToDo, ToDo } from '../../../common/types/index';
 
 const dataPath = 'src/common/mocks/mockedTodos.json';
@@ -37,7 +34,7 @@ export async function postToDos(
       const newToDos: ToDo[] = [...toDos, request.body];
       const newToDosStringified = JSON.stringify(newToDos);
 
-      writeJSONToFs(dataPath, newToDosStringified);
+      writeToFs(dataPath, newToDosStringified);
 
       response.type('application/json');
       response.status(200);

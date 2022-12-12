@@ -28,7 +28,7 @@ export function readJSONFromFS<Type>(filePath: string): Promise<Type> {
   });
 }
 
-export function writeJSONToFs(filePath: string, data: string): void {
+export function writeToFs(filePath: string, data: string): void {
   if (!filePath) {
     throw errorFilePathIsRequired;
   }
