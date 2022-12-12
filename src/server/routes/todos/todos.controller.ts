@@ -17,7 +17,7 @@ export async function getToDos(
     response.status(200);
     response.send(toDos);
   } catch (error) {
-    // next(error);
+    next(error);
   }
 }
 
