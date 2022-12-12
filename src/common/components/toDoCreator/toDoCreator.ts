@@ -30,7 +30,6 @@ function createToDoCreator(url = ''): HTMLFormElement {
   });
   form.appendChild(input);
   form.appendChild(button);
-
   return form;
 }
 

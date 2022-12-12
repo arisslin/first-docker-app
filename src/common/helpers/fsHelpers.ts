@@ -28,21 +28,16 @@ export function readJSONFromFS<Type>(filePath: string): Promise<Type> {
   });
 }
 
-export function writeJSONToFs(
-  filePath: string,
-  data: string
-): Promise<unknown> {
+export function writeJSONToFs(filePath: string, data: string): void {
   if (!filePath) {
     throw errorFilePathIsRequired;
   }
 
-  return new Promise((resolve, reject) => {
-    writeFile(filePath, data, (error) => {
-      if (error) {
-        reject(error);
-      } else {
-        console.log('Data written to ' + filePath);
-      }
-    });
+  writeFile(filePath, data, (error) => {
+    if (error) {
+      console.error(error);
+    } else {
+      console.log('Data written to ' + filePath);
+    }
   });
 }

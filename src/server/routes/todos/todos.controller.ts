@@ -1,5 +1,4 @@
 import { Response, Request, NextFunction } from 'express';
-import { writeFile } from 'fs';
 import { errorNoToDo } from '../../../common/errors/globalError';
 import {
   readJSONFromFS,
@@ -21,7 +20,7 @@ export async function getToDos(
     response.status(200);
     response.send(toDos);
   } catch (error) {
-    next(error);
+    // next(error);
   }
 }
 
@@ -38,7 +37,7 @@ export async function postToDos(
       const newToDos: ToDo[] = [...toDos, request.body];
       const newToDosStringified = JSON.stringify(newToDos);
 
-      await writeJSONToFs(dataPath, newToDosStringified);
+      writeJSONToFs(dataPath, newToDosStringified);
 
       response.type('application/json');
       response.status(200);
