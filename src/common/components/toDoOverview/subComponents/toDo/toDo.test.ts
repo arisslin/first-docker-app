@@ -3,7 +3,7 @@ import createToDo from './toDo';
 
 describe('createToDo', () => {
   const toDoChecked: ToDo = {
-    id: 1,
+    id: '1',
     task: 'Do something!',
     isDone: true,
   };
@@ -27,7 +27,7 @@ describe('createToDo', () => {
 
   it('sets checkbox to unchecked by parameter', () => {
     const toDoUnChecked: ToDo = {
-      id: 1,
+      id: '1',
       task: 'Do something!',
       isDone: false,
     };

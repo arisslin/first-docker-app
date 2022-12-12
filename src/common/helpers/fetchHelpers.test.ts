@@ -1,46 +1,47 @@
+import { toDosURL } from '../constants/index';
+import {
+  createFetchGetError,
+  createFetchPostError,
+} from '../errors/clientErrors';
 import { ToDo } from '../types/index';
-import { fetchFrom } from './fetchHelpers';
-import { mockRejectedApiCall, mockResolvedApiCall } from './testHelpers';
+import { fetchGetToDos, fetchPostToDo } from './fetchHelpers';
 
-describe('fetchFrom()', () => {
-  const MOCK_API_ANSWER_JSON: ToDo[] = [
-    { id: 1, task: 'Do something', isDone: true },
-  ];
-  const MOCK_API_ANSWER_TEXT = 'Hello World!';
-  const MOCK_API_REJECT = 'API is down!';
-  const url = 'https://www.thisisatest.de/todos';
+const mockedError = new Error('Test');
+const mockedToDos: ToDo[] = [{ id: '1', task: 'Do something', isDone: true }];
 
-  it('retuns a fetched JSON object', async () => {
-    global.fetch = jest
-      .fn()
-      .mockImplementation(mockResolvedApiCall(MOCK_API_ANSWER_JSON));
-
-    const answer = await fetchFrom(url);
-
-    expect(answer).toEqual(MOCK_API_ANSWER_JSON);
-    expect(global.fetch).toBeCalledTimes(1);
+describe('fetchGetToDos', () => {
+  it('returns an array of to dos', async () => {
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve(mockedToDos),
+      })
+    ) as jest.Mock;
+    expect.assertions(1);
+    expect(await fetchGetToDos()).toEqual(mockedToDos);
   });
 
-  it('retuns a fetched text', async () => {
-    global.fetch = jest
-      .fn()
-      .mockImplementation(mockResolvedApiCall(MOCK_API_ANSWER_TEXT));
+  it('rejects undefined', async () => {
+    global.fetch = jest.fn().mockRejectedValueOnce(mockedError);
+    expect.assertions(1);
+    await expect(fetchGetToDos).rejects.toThrow(createFetchGetError(toDosURL));
+  });
+});
 
-    const answer = await fetchFrom(url, 'text');
+describe('fetchPostToDo()', () => {
+  it('resolves a response', async () => {
+    const mockedResponse = 'response';
 
-    expect(answer).toEqual(MOCK_API_ANSWER_TEXT);
-    expect(global.fetch).toBeCalledTimes(1);
+    global.fetch = jest.fn(() => Promise.resolve(mockedResponse)) as jest.Mock;
+    expect.assertions(1);
+    expect(await fetchPostToDo(mockedToDos[0])).toBe(mockedResponse);
   });
 
-  it('throws on rejected fetch', async () => {
-    global.fetch = jest
-      .fn()
-      .mockImplementation(mockRejectedApiCall(MOCK_API_REJECT));
+  it('rejects undefined', () => {
+    global.fetch = jest.fn().mockRejectedValueOnce(mockedError);
+    expect.assertions(1);
 
-    try {
-      await fetchFrom(url);
-    } catch (error) {
-      expect(error).toBe(MOCK_API_REJECT);
-    }
+    return expect(fetchPostToDo(mockedToDos[0])).rejects.toEqual(
+      createFetchPostError(toDosURL)
+    );
   });
 });
