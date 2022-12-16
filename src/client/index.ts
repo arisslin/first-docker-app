@@ -1,6 +1,8 @@
 import { fetchGetToDos } from '../common/helpers/fetchHelpers';
 import createToDoOverview from '../common/components/toDoOverview/toDoOverview';
-import createToDoCreator from '../common/components/toDoCreator/toDoCreator';
+import createToDoCreator, {
+  appendToDoToOverview,
+} from '../common/components/toDoCreator/toDoCreator';
 
 fetchGetToDos()
   .then((toDos) => {
@@ -9,7 +11,7 @@ fetchGetToDos()
 
     toDosOverview && mainElement?.appendChild(toDosOverview);
 
-    const toDoCreator = createToDoCreator();
+    const toDoCreator = createToDoCreator(appendToDoToOverview);
 
     mainElement?.appendChild(toDoCreator);
   })
