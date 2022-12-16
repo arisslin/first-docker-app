@@ -5,7 +5,10 @@ import createToDo from '../toDoOverview/subComponents/toDo/toDo';
 import { toDoOverviewId } from '../toDoOverview/toDoOverview';
 import './toDoCreator.css';
 
-function createToDoCreator(url = ''): HTMLFormElement {
+function createToDoCreator(
+  handleSubmit: (input?: HTMLInputElement) => void,
+  url = ''
+): HTMLFormElement {
   const input = document.createElement('input');
   const inputId = 'to-do-creator__input';
 
@@ -26,36 +29,46 @@ function createToDoCreator(url = ''): HTMLFormElement {
   form.method = 'post';
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    appendToDoToOverview(input);
+
+    if (handleSubmit.length) {
+      handleSubmit(input);
+    } else {
+      handleSubmit();
+    }
   });
   form.appendChild(input);
   form.appendChild(button);
   return form;
 }
 
-async function appendToDoToOverview(input: HTMLInputElement): Promise<void> {
+export function appendToDoToOverview(input?: HTMLInputElement): void {
   const toDoOverview = document.getElementById(
     toDoOverviewId
   ) as HTMLFieldSetElement | null;
 
-  if (input.value && toDoOverview) {
+  if (input?.value && toDoOverview) {
     const newToDoData: ToDo = {
       id: uuidv4(),
       task: input.value,
       isDone: false,
     };
 
-    const response = await fetchPostToDo(newToDoData);
+    fetchPostToDo(newToDoData)
+      .then((response) => {
+        if (response?.ok) {
+          const newToDo = createToDo(newToDoData);
 
-    if (response?.ok) {
-      const newToDo = createToDo(newToDoData);
-
-      toDoOverview?.appendChild(newToDo);
-    } else {
-      console.error('Posting to do in frontend failed!');
-    }
-
-    input.value = '';
+          toDoOverview?.appendChild(newToDo);
+        } else {
+          console.error('Posting to do in frontend failed!');
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        input.value = '';
+      });
   }
 }
 
