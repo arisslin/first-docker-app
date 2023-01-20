@@ -41,6 +41,7 @@ function createToDo({
   const div = document.createElement('div');
 
   div.className = 'to-do';
+  div.id = id;
   div.appendChild(checkbox);
   div.appendChild(label);
   div.appendChild(deleteButton);

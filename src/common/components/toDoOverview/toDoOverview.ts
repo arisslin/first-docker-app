@@ -15,10 +15,23 @@ function createToDoOverview(toDos: ToDo[]): HTMLFieldSetElement | undefined {
   fieldSet.appendChild(legend);
   toDos.forEach((toDo) => {
     const handleDeleteButtonClick = () => {
-      fetchDeleteToDo(toDo);
+      fetchDeleteToDo(toDo)
+        .then((response) => {
+          if (response?.ok) {
+            const renderedToDo = document.getElementById(toDo.id);
+
+            renderedToDo?.remove();
+          } else {
+            console.error('Delete to do in frontend failed!');
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     };
     const toDoEntry: ToDoEntry = { ...toDo, handleDeleteButtonClick };
     const toDoElement = createToDo(toDoEntry);
+
     fieldSet.appendChild(toDoElement);
   });
 
