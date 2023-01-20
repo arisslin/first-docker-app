@@ -16,3 +16,16 @@
 
   font-size: var(--font-size-base);
 }
+
+.to-do__delete-button {
+  display: block;
+  margin-left: 12px;
+  border: none;
+  padding: 0;
+
+  background-color: transparent;
+}
+
+.to-do__delete-button .fa-trash {
+  height: 16px;
+}
