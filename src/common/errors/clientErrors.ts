@@ -1,3 +1,6 @@
+export const createFetchDeleteError = (url: string) =>
+  new Error(`Fetch DELETE failed on ${url}`);
+
 export const createFetchGetError = (url: string) =>
   new Error(`Fetch GET failed on ${url}`);
 
