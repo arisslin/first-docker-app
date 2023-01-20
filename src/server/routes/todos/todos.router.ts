@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { getToDos, postToDos } from './todos.controller';
+import { deleteToDo, getToDos, postToDos } from './todos.controller';
 
 const router = Router();
 
-router.route('/').get(getToDos).post(postToDos);
+router.route('/').get(getToDos).post(postToDos).delete(deleteToDo);
 
 export default router;

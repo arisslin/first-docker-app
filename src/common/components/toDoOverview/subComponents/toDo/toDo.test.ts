@@ -57,7 +57,6 @@ describe('createToDo', () => {
     const event = new Event('click');
 
     button?.dispatchEvent(event);
-
     expect(mockedHandleToDo).toBeCalledTimes(1);
   });
 });
