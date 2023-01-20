@@ -43,4 +43,10 @@ describe('createToDo', () => {
     expect(label?.htmlFor).toBe(idOfCheckedToDo);
     expect(label?.innerText).toBe(toDoChecked.task);
   });
+
+  it('contains a delete button', () => {
+    const button = elementChecked.querySelector('button');
+
+    expect(button).toBeTruthy();
+  });
 });
