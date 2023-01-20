@@ -1,6 +1,8 @@
-import { fetchDeleteToDo } from '../../helpers/fetchHelpers';
 import { ToDo } from '../../types/index';
-import createToDo, { ToDoEntry } from './subComponents/toDo/toDo';
+import createToDo, {
+  handleDeleteButtonClick,
+  ToDoEntry,
+} from './subComponents/toDo/toDo';
 import './toDoOverview.css';
 
 function createToDoOverview(toDos: ToDo[]): HTMLFieldSetElement | undefined {
@@ -14,22 +16,13 @@ function createToDoOverview(toDos: ToDo[]): HTMLFieldSetElement | undefined {
   fieldSet.id = toDoOverviewId;
   fieldSet.appendChild(legend);
   toDos.forEach((toDo) => {
-    const handleDeleteButtonClick = () => {
-      fetchDeleteToDo(toDo)
-        .then((response) => {
-          if (response?.ok) {
-            const renderedToDo = document.getElementById(toDo.id);
-
-            renderedToDo?.remove();
-          } else {
-            console.error('Delete to do in frontend failed!');
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+    const handleDelButtonClick = () => {
+      handleDeleteButtonClick(toDo);
     };
-    const toDoEntry: ToDoEntry = { ...toDo, handleDeleteButtonClick };
+    const toDoEntry: ToDoEntry = {
+      ...toDo,
+      handleDeleteButtonClick: handleDelButtonClick,
+    };
     const toDoElement = createToDo(toDoEntry);
 
     fieldSet.appendChild(toDoElement);

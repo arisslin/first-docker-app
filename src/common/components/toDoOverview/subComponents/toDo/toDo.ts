@@ -1,4 +1,5 @@
 import { ToDo } from '../../../../types/index';
+import { fetchDeleteToDo } from '../../../../helpers/fetchHelpers';
 import './toDo.css';
 
 export type ToDoEntry = ToDo & {
@@ -47,6 +48,22 @@ function createToDo({
   div.appendChild(deleteButton);
 
   return div;
+}
+
+export function handleDeleteButtonClick(toDo: ToDo): void {
+  fetchDeleteToDo(toDo)
+    .then((response) => {
+      if (response?.ok) {
+        const renderedToDo = document.getElementById(toDo.id);
+
+        renderedToDo?.remove();
+      } else {
+        console.error('Delete to do in frontend failed!');
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 export default createToDo;
