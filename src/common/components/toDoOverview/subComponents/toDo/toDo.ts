@@ -1,7 +1,7 @@
 import { ToDo } from '../../../../types/index';
 import './toDo.css';
 
-type ToDoEntry = ToDo & {
+export type ToDoEntry = ToDo & {
   handleDeleteButtonClick?: () => void;
 };
 
@@ -34,8 +34,8 @@ function createToDo({
 
   deleteButton.className = 'to-do__delete-button';
   deleteButton.appendChild(trashIcon);
-  deleteButton.addEventListener('click', (event) => {
-    console.log(event?.currentTarget);
+  deleteButton.addEventListener('click', () => {
+    handleDeleteButtonClick && handleDeleteButtonClick();
   });
 
   const div = document.createElement('div');

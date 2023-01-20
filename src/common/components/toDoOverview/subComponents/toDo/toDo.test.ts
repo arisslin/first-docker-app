@@ -1,11 +1,13 @@
 import { ToDo } from '../../../../types/index';
-import createToDo from './toDo';
+import createToDo, { ToDoEntry } from './toDo';
 
 describe('createToDo', () => {
-  const toDoChecked: ToDo = {
+  const mockedHandleToDo = jest.fn();
+  const toDoChecked: ToDoEntry = {
     id: '1',
     task: 'Do something!',
     isDone: true,
+    handleDeleteButtonClick: mockedHandleToDo,
   };
   const elementChecked = createToDo(toDoChecked);
   const inputChecked = elementChecked.querySelector('input');
@@ -48,5 +50,14 @@ describe('createToDo', () => {
     const button = elementChecked.querySelector('button');
 
     expect(button).toBeTruthy();
+  });
+
+  it('handles delete button click', () => {
+    const button = elementChecked.querySelector('button');
+    const event = new Event('click');
+
+    button?.dispatchEvent(event);
+
+    expect(mockedHandleToDo).toBeCalledTimes(1);
   });
 });
