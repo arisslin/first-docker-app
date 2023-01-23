@@ -11,8 +11,9 @@ describe('createToDo', () => {
   const inputChecked = elementChecked.querySelector('input');
   const idOfCheckedToDo = 'to-do-' + toDoChecked.id;
 
-  it('is created as HTMLDivElement', () => {
+  it('is created as HTMLDivElement with an id', () => {
     expect(elementChecked.tagName).toBe('DIV');
+    expect(elementChecked.id).toBe(toDoChecked.id);
   });
 
   it('contains a checkbox with id and name', () => {
@@ -42,5 +43,11 @@ describe('createToDo', () => {
 
     expect(label?.htmlFor).toBe(idOfCheckedToDo);
     expect(label?.innerText).toBe(toDoChecked.task);
+  });
+
+  it('contains a delete button', () => {
+    const button = elementChecked.querySelector('button');
+
+    expect(button).toBeTruthy();
   });
 });

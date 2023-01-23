@@ -35,9 +35,7 @@ describe('createToDoCreator()', () => {
 
     expect(handleSubmit).toBeCalledTimes(1);
 
-    const handleSubmitWithParam = jest.fn((input?: HTMLInputElement) => {
-      console.log('Test');
-    });
+    const handleSubmitWithParam = jest.fn();
     const toDoCreatorWithParam = createToDoCreator(handleSubmitWithParam);
 
     toDoCreatorWithParam.dispatchEvent(new Event('submit'));

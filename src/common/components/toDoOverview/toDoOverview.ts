@@ -3,10 +3,6 @@ import createToDo from './subComponents/toDo/toDo';
 import './toDoOverview.css';
 
 function createToDoOverview(toDos: ToDo[]): HTMLFieldSetElement | undefined {
-  if (!toDos.length) {
-    return undefined;
-  }
-
   const legend = document.createElement('legend');
 
   legend.innerText = 'To dos:';
@@ -18,6 +14,7 @@ function createToDoOverview(toDos: ToDo[]): HTMLFieldSetElement | undefined {
   fieldSet.appendChild(legend);
   toDos.forEach((toDo) => {
     const toDoElement = createToDo(toDo);
+
     fieldSet.appendChild(toDoElement);
   });
 
