@@ -1,1 +1,17 @@
-[{"id":"5000b5f7-035f-4a96-b3fc-ff2f33c027e9","task":"Müll rausbringen","isDone":false},{"id":"92b1a897-473a-43fa-8b48-7184693a74d6","task":"Hausaufgaben machen","isDone":false},{"id":"ef739b30-3541-4eda-aac5-8f0661b287b5","task":"Staub saugen","isDone":false}]
+[
+  {
+    "id": "5000b5f7-035f-4a96-b3fc-ff2f33c027e9",
+    "task": "Müll rausbringen",
+    "isDone": false
+  },
+  {
+    "id": "92b1a897-473a-43fa-8b48-7184693a74d6",
+    "task": "Hausaufgaben machen",
+    "isDone": false
+  },
+  {
+    "id": "ef739b30-3541-4eda-aac5-8f0661b287b5",
+    "task": "Staub saugen",
+    "isDone": false
+  }
+]

@@ -41,7 +41,16 @@ export async function getToDos(
     response.status(200);
     response.send(toDos);
   } catch (error) {
-    next(error);
+    const err = error as Error;
+
+    if (err.message.includes('No such file or directory')) {
+      writeToFs(dataPath, '[]');
+      response.type('application/json');
+      response.status(200);
+      response.send([]);
+    } else {
+      next(err);
+    }
   }
 }
 
