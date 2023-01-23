@@ -45,7 +45,7 @@ export async function getToDos(
   }
 }
 
-export async function postToDos(
+export async function postToDo(
   request: Request,
   response: Response,
   next: NextFunction
@@ -63,6 +63,34 @@ export async function postToDos(
       response.type('application/json');
       response.status(200);
       response.send(JSON.stringify('Added to do!'));
+    } catch (error) {
+      next(error);
+    }
+  }
+}
+
+export async function putToDo(
+  request: Request,
+  response: Response,
+  next: NextFunction
+): Promise<void> {
+  if (!isToDo(request.body)) {
+    next(errorNoToDo);
+  } else {
+    try {
+      const toDos = await readJSONFromFS<ToDo[]>(dataPath);
+      const updatedToDo: ToDo = request.body;
+      const toDoAt = toDos.findIndex((toDo) => toDo.id === updatedToDo.id);
+
+      toDos[toDoAt] = updatedToDo;
+
+      const updatedToDosStringified = JSON.stringify(toDos);
+
+      writeToFs(dataPath, updatedToDosStringified);
+
+      response.type('application/json');
+      response.status(200);
+      response.send(JSON.stringify('Updated to do!'));
     } catch (error) {
       next(error);
     }
