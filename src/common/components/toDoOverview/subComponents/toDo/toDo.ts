@@ -1,5 +1,8 @@
 import { ToDo } from '../../../../types/index';
-import { fetchDeleteToDo } from '../../../../helpers/fetchHelpers';
+import {
+  fetchDeleteToDo,
+  fetchPutToDo,
+} from '../../../../helpers/fetchHelpers';
 import './toDo.css';
 
 function createToDo({ id, task, isDone }: ToDo): HTMLDivElement {
@@ -11,6 +14,11 @@ function createToDo({ id, task, isDone }: ToDo): HTMLDivElement {
   checkbox.id = identifier;
   checkbox.name = identifier;
   checkbox.type = 'checkbox';
+  checkbox.addEventListener('change', (event) => {
+    const target = event.target as HTMLInputElement;
+
+    updateToDo(id, task, target.checked);
+  });
 
   const label = document.createElement('label');
 
@@ -41,7 +49,7 @@ function createToDo({ id, task, isDone }: ToDo): HTMLDivElement {
   return div;
 }
 
-export function handleDeleteButtonClick(toDo: ToDo): void {
+function handleDeleteButtonClick(toDo: ToDo): void {
   fetchDeleteToDo(toDo)
     .then((response) => {
       if (response?.ok) {
@@ -50,6 +58,26 @@ export function handleDeleteButtonClick(toDo: ToDo): void {
         renderedToDo?.remove();
       } else {
         console.error('Delete to do in frontend failed!');
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+function updateToDo(id: string, task: string, isDone: boolean): void {
+  const updatedToDo: ToDo = {
+    id: id,
+    task: task,
+    isDone: isDone,
+  };
+
+  fetchPutToDo(updatedToDo)
+    .then((response) => {
+      if (response?.ok) {
+        console.log(updatedToDo);
+      } else {
+        console.error('Put to do in frontend failed!');
       }
     })
     .catch((error) => {
