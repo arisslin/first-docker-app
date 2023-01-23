@@ -3,7 +3,8 @@ import { errorNoToDo } from '../../../common/errors/globalError';
 import { readJSONFromFS, writeToFs } from '../../../common/helpers/fsHelpers';
 import { isToDo, ToDo } from '../../../common/types/index';
 
-const dataPath = 'src/common/mocks/mockedTodos.json';
+const dataPath =
+  process.env.DATA_PATH || 'src/common/mocks/mockedVolumes/mockedTodos.json';
 
 export async function deleteToDo(
   request: Request,
@@ -41,7 +42,16 @@ export async function getToDos(
     response.status(200);
     response.send(toDos);
   } catch (error) {
-    next(error);
+    const err = error as Error;
+
+    if (err.message.includes('No such file or directory')) {
+      writeToFs(dataPath, '[]');
+      response.type('application/json');
+      response.status(200);
+      response.send([]);
+    } else {
+      next(err);
+    }
   }
 }
 
