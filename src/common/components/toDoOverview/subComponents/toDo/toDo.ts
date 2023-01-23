@@ -2,16 +2,7 @@ import { ToDo } from '../../../../types/index';
 import { fetchDeleteToDo } from '../../../../helpers/fetchHelpers';
 import './toDo.css';
 
-export type ToDoEntry = ToDo & {
-  handleDeleteButtonClick?: () => void;
-};
-
-function createToDo({
-  id,
-  task,
-  isDone,
-  handleDeleteButtonClick,
-}: ToDoEntry): HTMLDivElement {
+function createToDo({ id, task, isDone }: ToDo): HTMLDivElement {
   const identifier = 'to-do-' + id;
   const checkbox = document.createElement('input');
 
@@ -36,7 +27,7 @@ function createToDo({
   deleteButton.className = 'to-do__delete-button';
   deleteButton.appendChild(trashIcon);
   deleteButton.addEventListener('click', () => {
-    handleDeleteButtonClick && handleDeleteButtonClick();
+    handleDeleteButtonClick({ id, task, isDone });
   });
 
   const div = document.createElement('div');

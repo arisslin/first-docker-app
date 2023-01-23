@@ -1,8 +1,5 @@
 import { ToDo } from '../../types/index';
-import createToDo, {
-  handleDeleteButtonClick,
-  ToDoEntry,
-} from './subComponents/toDo/toDo';
+import createToDo from './subComponents/toDo/toDo';
 import './toDoOverview.css';
 
 function createToDoOverview(toDos: ToDo[]): HTMLFieldSetElement | undefined {
@@ -16,14 +13,7 @@ function createToDoOverview(toDos: ToDo[]): HTMLFieldSetElement | undefined {
   fieldSet.id = toDoOverviewId;
   fieldSet.appendChild(legend);
   toDos.forEach((toDo) => {
-    const handleDelButtonClick = () => {
-      handleDeleteButtonClick(toDo);
-    };
-    const toDoEntry: ToDoEntry = {
-      ...toDo,
-      handleDeleteButtonClick: handleDelButtonClick,
-    };
-    const toDoElement = createToDo(toDoEntry);
+    const toDoElement = createToDo(toDo);
 
     fieldSet.appendChild(toDoElement);
   });
