@@ -3,7 +3,8 @@ import { errorNoToDo } from '../../../common/errors/globalError';
 import { readJSONFromFS, writeToFs } from '../../../common/helpers/fsHelpers';
 import { isToDo, ToDo } from '../../../common/types/index';
 
-const dataPath = 'src/common/mocks/mockedVolumes/mockedTodos.json';
+const dataPath =
+  process.env.DATA_PATH || 'src/common/mocks/mockedVolumes/mockedTodos.json';
 
 export async function deleteToDo(
   request: Request,

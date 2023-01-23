@@ -12,6 +12,7 @@ RUN addgroup -S node && adduser -S node -G node
 USER node
 
 RUN mkdir /home/node/code
+RUN mkdir /home/node/data
 WORKDIR /home/node/code
 COPY --from=build --chown=node:node /build .
 
