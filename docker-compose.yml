@@ -1,0 +1,22 @@
+version: '3'
+services:
+  client:
+    build:
+      context: ./
+      dockerfile: client.Dockerfile
+    ports:
+      - '8080:80'
+    links:
+      - server
+  server:
+    build:
+      context: ./
+      dockerfile: server.Dockerfile
+    ports:
+      - '8000:8000'
+    volumes:
+      - .:/home/node/code
+      - /home/node/code/node_modules
+      - /home/node/data
+    environment:
+      DATA_PATH: /home/node/data/todos.json
